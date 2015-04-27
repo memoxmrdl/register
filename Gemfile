@@ -15,6 +15,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 
 gem 'devise'
+gem 'pretty_formatter'
 
 group :development do
   gem 'better_errors'
