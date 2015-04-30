@@ -53,8 +53,9 @@ ActiveRecord::Schema.define(version: 20150430040038) do
 
   create_table "visits", force: :cascade do |t|
     t.integer  "logbook_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "register_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   add_index "visits", ["logbook_id"], name: "index_visits_on_logbook_id", using: :btree
