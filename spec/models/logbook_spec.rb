@@ -1,19 +1,51 @@
 require 'rails_helper'
 
 RSpec.describe Logbook, type: :model do
-  it 'llenar un registro invalido de visita' do
+  it 'llenar un registro invalido' do
     logbook = Logbook.new
+
     logbook.should_not be_valid
   end
 
-  it 'llenar un registro valido de visita' do
+  it 'llenar un registro valido' do
     logbook = Logbook.new
 
     logbook.first_name = 'Juan Carlos'
     logbook.second_name =  'Moreno Dolores'
-    #logbook.office = 'Recursos Humanos'
-    #logbook.cell = Definir foto de la credencial
-    #logbook.cell = Definir foto del visitante
+
     logbook.should be_valid
+  end
+
+  it 'llenar un registro con visita a una oficina' do
+    visit = create(:visit, office: create(:office))
+
+    logbook = Logbook.new
+    logbook.first_name = 'Jose Guillermo'
+    logbook.second_name = 'Moreno Dolores'
+    logbook.save
+
+    visit.logbook = logbook
+    visit.save
+
+    logbook.visits.size.should == 1
+  end
+
+  it 'llenar un registro con mas de dos visitas a una oficina' do
+    office = create(:office)
+    visit = create(:visit, office: office)
+    visit_yesterday = create(:visit, register_at: 1.day.ago, office: office)
+
+    logbook = Logbook.new
+    logbook.first_name = 'Alberto'
+    logbook.second_name = 'Moreno Dolores'
+    logbook.save
+
+    visit.logbook = logbook
+    visit.save
+
+    visit_yesterday.logbook = logbook
+    visit_yesterday.save
+
+    logbook.visits.size.should == 2
   end
 end
