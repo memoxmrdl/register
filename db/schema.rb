@@ -11,16 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150430040038) do
+ActiveRecord::Schema.define(version: 20150501002136) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "logbooks", force: :cascade do |t|
-    t.string   "first_name",  null: false
-    t.string   "second_name", null: false
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.string   "first_name",              null: false
+    t.string   "second_name",             null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.string   "credential_file_name"
+    t.string   "credential_content_type"
+    t.integer  "credential_file_size"
+    t.datetime "credential_updated_at"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
   create_table "offices", force: :cascade do |t|

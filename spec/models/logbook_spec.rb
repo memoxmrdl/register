@@ -1,6 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe Logbook, type: :model do
+  before do
+    def image_credential
+      File.new Rails.root.join('spec', 'tests_files', 'credencial.jpg')
+    end
+
+    def image_photo
+      File.new Rails.root.join('spec', 'tests_files', 'foto.png')
+    end
+  end
+
   it 'llenar un registro invalido' do
     logbook = Logbook.new
 
@@ -12,6 +22,8 @@ RSpec.describe Logbook, type: :model do
 
     logbook.first_name = 'Juan Carlos'
     logbook.second_name =  'Moreno Dolores'
+    logbook.credential = image_credential
+    logbook.photo = image_photo
 
     logbook.should be_valid
   end
@@ -22,6 +34,8 @@ RSpec.describe Logbook, type: :model do
     logbook = Logbook.new
     logbook.first_name = 'Jose Guillermo'
     logbook.second_name = 'Moreno Dolores'
+    logbook.credential = image_credential
+    logbook.photo = image_photo
     logbook.save
 
     visit.logbook = logbook
@@ -38,6 +52,8 @@ RSpec.describe Logbook, type: :model do
     logbook = Logbook.new
     logbook.first_name = 'Alberto'
     logbook.second_name = 'Moreno Dolores'
+    logbook.credential = image_credential
+    logbook.photo = image_photo
     logbook.save
 
     visit.logbook = logbook

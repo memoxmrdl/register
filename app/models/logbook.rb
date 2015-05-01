@@ -2,6 +2,7 @@ class Logbook < ActiveRecord::Base
   has_many :visits
 
   validates :first_name, :second_name, presence: true
+  validates :credential, :photo, attachment_presence: true
 
   has_attached_file :credential,
                     styles: { medium: "250x300>", thumb: "150x200>" }
