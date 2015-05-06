@@ -17,6 +17,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'devise'
 gem 'paperclip'
 gem 'pretty_formatter'
+gem 'haml-rails'
 
 
 group :development do
