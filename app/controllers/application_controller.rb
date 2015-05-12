@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   layout :layout_by_resource
 
   def after_sign_in_path_for(resource)
-    request.env['omniauth.origin'] || stored_location_for(resource) || logbooks_path
+    request.env['omniauth.origin'] || stored_location_for(resource) || visits_path
   end
 
   protected

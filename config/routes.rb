@@ -5,5 +5,6 @@ Rails.application.routes.draw do
 
   devise_for :users
 
+  resources :visits
   resources :logbooks
 end
