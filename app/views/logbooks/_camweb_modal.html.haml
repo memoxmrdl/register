@@ -1,0 +1,21 @@
+#camWebModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalCamWeb", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+        %h4#myModalLabel.modal-title Tomar foto
+      .modal-body{style: 'text-align:center'}
+        %video#video
+        %canvas#canvas{style: 'display:none'}
+      .modal-footer
+        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+        %button.btn.btn-primary{:type => "button"} Save changes
+
+= content_for :javascripts do
+  :javascript
+    var camweb = App.Utils.Photo();
+
+    $('#camWebModal').on('show.bs.modal', function (e) {
+      camweb.init();
+    })

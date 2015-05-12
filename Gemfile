@@ -19,7 +19,6 @@ gem 'paperclip'
 gem 'pretty_formatter'
 gem 'haml-rails'
 
-
 group :development do
   gem 'better_errors'
   gem 'pry-rails'

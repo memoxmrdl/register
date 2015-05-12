@@ -7,4 +7,8 @@
     = csrf_meta_tags
   %body{:class => "#{controller_name} #{action_name}"}
     = render 'layouts/navbar'
+    .container
+      .row
+        .col-md-12= render 'layouts/messages'
     = yield
+    = yield :javascripts

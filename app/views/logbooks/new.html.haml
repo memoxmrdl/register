@@ -1,0 +1,28 @@
+.content-logbooks
+  .container
+    .row
+    = form_for @logbook do |f|
+      .col-md-4
+        %h3 Nuevo registro
+        .form-group
+          = f.label 'Nombre:'
+          = f.text_field :first_name, class: 'form-control'
+        .form-group
+          = f.label 'Apellidos:'
+          = f.text_field :second_name, class: 'form-control'
+        .form-group
+          = f.label 'Foto'
+          %br
+          %button.btn.btn-primary.btn-lg{"data-target" => "#camWebModal", "data-toggle" => "modal", :type => "button"}
+            Capturar
+          = f.hidden_field :photo
+        .form-group
+          = f.label 'Credencial'
+          %br
+          = link_to 'Capturar', '#', class: 'btn btn-primary'
+          = f.hidden_field :credential
+
+        = f.submit 'Guardar', class: 'btn btn-default'
+      .col-md-8
+
+= render 'camweb_modal'
