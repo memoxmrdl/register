@@ -1,15 +1,17 @@
 .content-logbooks
   .container
     .row
-    = form_for @logbook do |f|
+    = form_for @logbook, html: {role: :form, 'data-model' => 'logbook'} do |f|
       .col-md-4
         %h3 Nuevo registro
         .form-group
           = f.label 'Nombre:'
           = f.text_field :first_name, class: 'form-control'
+          %span.help-block
         .form-group
           = f.label 'Apellidos:'
           = f.text_field :second_name, class: 'form-control'
+          %span.help-block
         .form-group
           .row
             .col-md-4
@@ -17,6 +19,7 @@
               %br
               %button.btn.btn-primary.btn-lg{"data-target" => "#camwebPhoto", "data-toggle" => "modal", :type => "button"} Capturar
               = f.hidden_field :photo
+              %span.help-block
             .col-md-8
               = image_tag nil, class: 'img-responsive', id: 'logbook_photo_preview'
         .form-group
@@ -24,12 +27,13 @@
             .col-md-4
               = f.label 'Credencial'
               %br
-              %button.btn.btn-primary.btn-lg{"data-target" => "#camwebCredential", "data-toggle" => "modal", :type => "button"} Capturar
+              %button.btn.btn-primary.btn-lg{"data-target" => "#camwebCredential", "data-toggle" => "modal", :type => "button"}Capturar
               = f.hidden_field :credential
+              %span.help-block
             .col-md-8
               = image_tag nil, class: 'img-responsive', id: 'logbook_credential_preview'
 
-        = f.submit 'Guardar', class: 'btn btn-default'
+        = f.submit 'Guardar', class: 'btn btn-default btn-lg btn-block'
       .col-md-8
 
 = render partial: 'camweb_modal', locals: { name: 'Photo' }
@@ -37,6 +41,8 @@
 
 = content_for :javascripts do
   :javascript
+    new App.Utils.FormLogbook();
+
     var camwebPhoto = new App.Utils.CamWebPhoto();
     var camwebCredential = new App.Utils.CamWebCredential();
 

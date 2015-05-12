@@ -1,3 +1,25 @@
+class FormLogbook
+  constructor: ->
+    $('#new_logbook').submit ->
+      $form = $(@)
+
+      $.ajax
+        dataType: 'json'
+        method: $form.attr('method')
+        url: $form.attr('action')
+        data:
+          logbook:
+            first_name: $('#logbook_first_name').val()
+            second_name: $('#logbook_second_name').val()
+            photo: $('#logbook_photo_preview').attr('src')
+            credential: $('#logbook_credential_preview').attr('src')
+      .done (data) ->
+        window.location = '/logbooks'
+
+      return false
+
+App.Utils.FormLogbook = FormLogbook
+
 CamWebPhoto = ->
   init: (item) ->
     streaming = false
@@ -107,3 +129,10 @@ CamWebCredential = ->
       $("#logbook_credential_preview").attr('src', dataURL)
 
 App.Utils.CamWebCredential = CamWebCredential
+
+
+$(document).ready ->
+  $(document).bind 'ajaxError', 'form#new_logbook', (event, jqxhr, settings, exception) ->
+    $(event.data).render_form_errors $.parseJSON(jqxhr.responseText)
+    return
+  return
