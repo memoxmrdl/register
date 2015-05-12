@@ -1,6 +1,5 @@
 class LogbooksController < ApplicationController
   before_action :authenticate_user!
-  helper :headshot
 
   def index
   end

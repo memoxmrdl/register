@@ -1,21 +1,13 @@
-#camWebModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalCamWeb", :role => "dialog", :tabindex => "-1"}
+.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModal", :role => "dialog", :tabindex => "-1", id: "camweb#{name}"}
   .modal-dialog
     .modal-content
       .modal-header
         %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
           %span{"aria-hidden" => "true"} ×
-        %h4#myModalLabel.modal-title Tomar foto
+        %h4#myModalLabel.modal-title Capturar foto
       .modal-body{style: 'text-align:center'}
-        %video#video
-        %canvas#canvas{style: 'display:none'}
+        %video{width: '480', id: "video#{name}"}
+        %canvas{style: 'display:none', id: "canvas#{name}"}
       .modal-footer
-        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
-        %button.btn.btn-primary{:type => "button"} Save changes
-
-= content_for :javascripts do
-  :javascript
-    var camweb = App.Utils.Photo();
-
-    $('#camWebModal').on('show.bs.modal', function (e) {
-      camweb.init();
-    })
+        %button.cancelWebCam.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Cancelar
+        %button.btn.btn-primary{:type => "button", id: "take#{name}"} Tomar foto

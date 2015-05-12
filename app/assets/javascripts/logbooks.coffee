@@ -1,10 +1,13 @@
-Photo = ->
-  init: ->
-    Photo.streaming    = false
-    Photo.video  = document.querySelector('#video')
-    Photo.canvas = document.querySelector('#canvas')
-    width        = 480
-    height       = 0
+CamWebPhoto = ->
+  init: (item) ->
+    streaming = false
+    video = document.querySelector('#videoPhoto')
+    canvas = document.querySelector('#canvasPhoto')
+    stream = null
+    width = 480
+    height = 0
+    localMediaStream = null
+    name = item
 
     navigator.getMedia = (navigator.getUserMedia ||
                          navigator.webkitGetUserMedia ||
@@ -16,38 +19,91 @@ Photo = ->
       audio: false
     }, ((stream) ->
       if navigator.mozGetUserMedia
-        Photo.video.mozSrcObject = stream
+        video.mozSrcObject = stream
       else
         vendorURL = window.URL or window.webkitURL
-        Photo.video.src = vendorURL.createObjectURL(stream)
+        video.src = vendorURL.createObjectURL(stream)
 
-      Photo.video.play()
+      localMediaStream = stream
+      video.play()
     ), (err) ->
       console.log 'An error occured! ' + err
       return
 
-    Photo.video.addEventListener 'canplay', ((ev) ->
-      if !Photo.streaming
-        height = Photo.video.videoHeight / (Photo.video.videoWidth / width)
-        Photo.video.setAttribute 'width', width
-        Photo.video.setAttribute 'height', height
-        Photo.canvas.setAttribute 'width', width
-        Photo.canvas.setAttribute 'height', height
-        Photo.streaming = true
+    video.addEventListener 'canplay', ((ev) ->
+      if !streaming
+        height = video.videoHeight / (video.videoWidth / width)
+        video.setAttribute 'width', width
+        video.setAttribute 'height', height
+        canvas.setAttribute 'width', width
+        canvas.setAttribute 'height', height
+        streaming = true
       return
     ), false
 
-  stop: ->
-    Photo.video.pause()
-    Photo.video.src = ""
+    $('.cancelWebCam').on 'click', (e) ->
+      localMediaStream.stop()
 
-  takePhoto: ->
-    Photo.canvas.width = width;
-    Photo.canvas.height = height;
-    Photo.canvas.getContext('2d').drawImage(video, 0, 0, width, height);
-    console.info canvas.toDataURL('image/png');
+    $('#takePhoto').on 'click', ->
+      canvas.width = width
+      canvas.height = height
+      canvas.getContext('2d').drawImage(video, 0, 0, width, height)
+      dataURL = canvas.toDataURL('image/png')
+      $("#logbook_photo_preview").attr('src', dataURL)
 
-App.Utils.Photo = Photo
+App.Utils.CamWebPhoto = CamWebPhoto
 
+CamWebCredential = ->
+  init: (item) ->
+    streaming = false
+    video = document.querySelector('#videoCredential')
+    canvas = document.querySelector('#canvasCredential')
+    stream = null
+    width = 480
+    height = 0
+    localMediaStream = null
+    name = item
 
+    navigator.getMedia = (navigator.getUserMedia ||
+                         navigator.webkitGetUserMedia ||
+                         navigator.mozGetUserMedia ||
+                         navigator.msGetUserMedia)
 
+    navigator.getMedia {
+      video: true
+      audio: false
+    }, ((stream) ->
+      if navigator.mozGetUserMedia
+        video.mozSrcObject = stream
+      else
+        vendorURL = window.URL or window.webkitURL
+        video.src = vendorURL.createObjectURL(stream)
+
+      localMediaStream = stream
+      video.play()
+    ), (err) ->
+      console.log 'An error occured! ' + err
+      return
+
+    video.addEventListener 'canplay', ((ev) ->
+      if !streaming
+        height = video.videoHeight / (video.videoWidth / width)
+        video.setAttribute 'width', width
+        video.setAttribute 'height', height
+        canvas.setAttribute 'width', width
+        canvas.setAttribute 'height', height
+        streaming = true
+      return
+    ), false
+
+    $('.cancelWebCam').on 'click', (e) ->
+      localMediaStream.stop()
+
+    $('#takeCredential').on 'click', ->
+      canvas.width = width
+      canvas.height = height
+      canvas.getContext('2d').drawImage(video, 0, 0, width, height)
+      dataURL = canvas.toDataURL('image/png')
+      $("#logbook_credential_preview").attr('src', dataURL)
+
+App.Utils.CamWebCredential = CamWebCredential
