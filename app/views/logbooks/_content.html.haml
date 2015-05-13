@@ -1,0 +1,34 @@
+.content-logbooks
+  .container
+    .row
+      = render 'form'
+      .col-md-8
+        %h3 Visitantes
+        %table.table.table-bordered
+          %thead
+            %tr
+              %th Nombre
+              %th Apellidos
+              %th.col-sm-1 Ver
+              %th.col-sm-1 Editar
+              %th.col-sm-1 Eliminar
+          %tbody
+            = render partial: 'logbook', collection: @logbooks
+        = paginate @logbooks
+
+= render partial: 'camweb_modal', locals: { name: 'Photo' }
+= render partial: 'camweb_modal', locals: { name: 'Credential' }
+= content_for :javascripts do
+  :javascript
+    new App.Utils.FormLogbook();
+
+    var camwebPhoto = new App.Utils.CamWebPhoto();
+    var camwebCredential = new App.Utils.CamWebCredential();
+
+    $('#camwebPhoto').on('show.bs.modal', function (e) {
+      camwebPhoto.init();
+    });
+
+    $('#camwebCredential').on('show.bs.modal', function (e) {
+      camwebCredential.init();
+    });

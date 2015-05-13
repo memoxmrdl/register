@@ -1,16 +1,13 @@
 class LogbooksController < ApplicationController
   before_action :authenticate_user!
+  before_action :logbooks, only: [:index]
 
   def index
-    @logbooks = Logbook.all
+    @logbook = Logbook.new
   end
 
   def show
     @logbook = Logbook.find_by_id(params[:id])
-  end
-
-  def new
-    @logbook = Logbook.new
   end
 
   def create
@@ -47,5 +44,9 @@ class LogbooksController < ApplicationController
       :photo,
       :credential
     )
+  end
+
+  def logbooks
+    @logbooks = Logbook.page(params[:page]).per(8)
   end
 end

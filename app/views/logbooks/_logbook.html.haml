@@ -1,0 +1,6 @@
+%tr
+  %td= logbook[:first_name]
+  %td= logbook[:second_name]
+  %td= link_to 'Ver', logbook_path(logbook), class: 'btn btn-primary btn-xs'
+  %td= link_to 'Editar', edit_logbook_path(logbook), class: 'btn btn-info btn-xs'
+  %td= link_to 'Eliminar', logbook_path(logbook), method: :delete, class: 'btn btn-danger btn-xs'
