@@ -1,0 +1,14 @@
+.container
+  .row
+    .col-md-4
+      = render 'form'
+    .col-md-8
+      %h3 Departamentos
+      %table.table.table-bordered
+        %thead
+          %tr
+            %th Nombre
+            %th.col-sm-1 Modificar
+            %th.col-sm-1 Eliminar
+        %tbody
+          = render partial: 'office', collection: @offices

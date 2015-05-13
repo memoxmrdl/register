@@ -1,2 +1,4 @@
 %tr
   %td= office[:name]
+  %td= link_to 'Editar', edit_office_path(office), class: 'btn btn-info btn-xs'
+  %td= link_to 'Eliminar', office_path(office), method: :delete, class: 'btn btn-danger btn-xs'
