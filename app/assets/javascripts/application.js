@@ -22,3 +22,19 @@ $.fn.clear_previous_errors = function(){
     $(this).removeClass('has-error');
   });
 }
+
+function getBase64Image(imgElem) {
+  if(imgElem.src.length >= 416534) {
+    return imgElem.src
+  } else {
+    var canvas = document.createElement("canvas");
+    canvas.width = imgElem.clientWidth;
+    canvas.height = imgElem.clientHeight;
+    var ctx = canvas.getContext("2d");
+    ctx.drawImage(imgElem, 0, 0);
+    var dataURL = canvas.toDataURL("image/png");
+    console.info(imgElem)
+    //return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+    return dataURL;
+  }
+}

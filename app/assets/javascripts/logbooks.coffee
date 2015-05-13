@@ -18,6 +18,52 @@ class FormLogbook
 
       return false
 
+    $('.edit_logbook').submit ->
+      $form = $(@)
+
+      if $('#logbook_photo_preview').attr('src') != ''
+        photo = getBase64Image(document.getElementById('logbook_photo_preview'))
+
+      if $('#logbook_credential_preview').attr('src') != ''
+        credential = getBase64Image(document.getElementById('logbook_credential_preview'))
+
+      $.post $form.attr('action'), {
+        '_method':'put'
+        'logbook[first_name]': $('#logbook_first_name').val()
+        'logbook[second_name]': $('#logbook_second_name').val()
+        'logbook[photo]': photo
+        'logbook[credential]': credential
+      },(data) ->
+        window.location = '/logbooks'
+
+      return false
+
+  submit = ->
+    $form = $(@)
+
+    if $('#logbook_photo_preview').attr('src') != ''
+      photo = convertImgToBase64($('#logbook_photo_preview').attr('src'))
+
+    if $('#logbook_credential_preview').attr('src') != ''
+      credential = convertImgToBase64($('#logbook_credential_preview').attr('src'))
+
+    data =
+      logbook:
+        first_name: $('#logbook_first_name').val()
+        second_name: $('#logbook_second_name').val()
+        photo: photo
+        credential: credential
+
+    $.ajax
+      dataType: 'json'
+      method: $form.attr('method')
+      url: $form.attr('action')
+      data: data
+    .done (data) ->
+      window.location = '/logbooks'
+
+    return false
+
 App.Utils.FormLogbook = FormLogbook
 
 CamWebPhoto = ->
