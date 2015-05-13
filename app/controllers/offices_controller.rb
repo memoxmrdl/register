@@ -1,11 +1,11 @@
 class OfficesController < ApplicationController
+  before_action :offices, only: [:index, :edit]
+
   def index
-    @offices = Office.all
     @office = Office.new
   end
 
   def create
-    @offices = Office.all
     @office = Office.new(office_params)
 
     if @office.save
@@ -17,7 +17,6 @@ class OfficesController < ApplicationController
   end
 
   def edit
-    @offices = Office.all
     @office = Office.find(params[:id])
   end
 
@@ -48,5 +47,9 @@ class OfficesController < ApplicationController
 
   def office_params
     params.require(:office).permit(:name)
+  end
+
+  def offices
+    @offices = Office.page(params[:page]).per(10)
   end
 end
