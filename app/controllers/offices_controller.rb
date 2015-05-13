@@ -50,6 +50,6 @@ class OfficesController < ApplicationController
   end
 
   def offices
-    @offices = Office.page(params[:page]).per(10)
+    @offices = Kaminari.paginate_array(Office.all.reverse).page(params[:page]).per(10)
   end
 end

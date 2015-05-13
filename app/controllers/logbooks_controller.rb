@@ -79,6 +79,6 @@ class LogbooksController < ApplicationController
   end
 
   def logbooks
-    @logbooks = Logbook.page(params[:page]).per(8)
+    @logbooks = Kaminari.paginate_array(Logbook.all.reverse).page(params[:page]).per(8)
   end
 end
