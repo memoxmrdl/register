@@ -18,6 +18,7 @@ gem 'devise'
 gem 'paperclip'
 gem 'pretty_formatter'
 gem 'haml-rails'
+gem 'kaminari'
 
 group :development do
   gem 'better_errors'
