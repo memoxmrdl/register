@@ -1,0 +1,10 @@
+%h3 Visitas recientes
+%table.table.table-bordered
+  %thead
+    %tr
+      %th Visitante
+      %th Departamento
+      %th Hora de entrada
+      %th.col-sm-1 Salida
+  %tbody
+    = render partial: 'visit', collection: @visits

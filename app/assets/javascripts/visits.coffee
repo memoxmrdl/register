@@ -1,3 +1,12 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+class SelectsPickers
+  constructor: ->
+    @selectLogbook()
+    @selectOffice()
+
+  selectLogbook: ->
+    $('#select_logbook').selectpicker()
+
+  selectOffice: ->
+    $('#select_office').selectpicker()
+
+App.Utils.SelectsPickers = SelectsPickers

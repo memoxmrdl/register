@@ -4,7 +4,13 @@
 //= require bootstrap-sprockets
 //= require app
 //= require logbooks
+//= require visits
 //= require bootstrap-select.min
+
+window.onLoad = function(callback) {
+  $(document).ready(callback);
+  $(document).on('page:load', callback);
+}
 
 $.fn.render_form_errors = function(errors){
   $form = this;

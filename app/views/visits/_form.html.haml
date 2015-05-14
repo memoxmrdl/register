@@ -1,0 +1,5 @@
+%h3 Nueva visita
+= form_for @visit do |f|
+  = select_logbooks
+  = select_offices
+  = f.submit 'Registrar', class: 'btn btn-default btn-lg btn-block'
