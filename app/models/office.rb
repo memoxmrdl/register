@@ -1,5 +1,5 @@
 class Office < ActiveRecord::Base
-  belongs_to :visit
+  has_many :visit
 
   validates :name, presence: true, uniqueness: true
 end
