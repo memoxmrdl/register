@@ -1,4 +1,5 @@
 class OfficesController < ApplicationController
+  before_action :authenticate_user!
   before_action :offices, only: [:index, :edit]
 
   def index
