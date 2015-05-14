@@ -1,4 +1,4 @@
-- text = params[:action] == 'index' ? 'Nuevo' : 'Editar'
+- text = params[:action] == 'index' ? 'Nuevo visitante' : 'Editar'
 - button = params[:action] == 'index' ? 'Guardar' : 'Actualizar'
 
 = form_for @logbook, html: {role: :form, 'data-model' => 'logbook'} do |f|
