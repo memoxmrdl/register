@@ -3,11 +3,11 @@ class Visit < ActiveRecord::Base
   belongs_to :office
 
   validates :register_at, presence: true
-  validates :logbook_id, uniqueness: { scope: [:office] }
+  validates_uniqueness_of :logbook_id, scope: :office_id, conditions: -> { where(output_at: nil) }
 
   scope :current_visits,
-    -> { where('register_at > ?', Date.today).order('register_at DESC') }
+    -> { where(output_at: nil) }
 
   scope :past_visits,
-    -> { where('register_at <= ?', Date.today).order('register_at DESC') }
+    -> { where.not(output_at: nil) }
 end

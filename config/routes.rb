@@ -6,6 +6,10 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :offices
-  resources :visits
+
+  resources :visits do
+    get 'output', on: :member
+  end
+
   resources :logbooks
 end
