@@ -13,4 +13,8 @@ class Logbook < ActiveRecord::Base
                     styles: { medium: "250x300>", thumb: "150x200>" }
   validates_attachment_content_type :photo,
                                     content_type: /\Aimage\/.*\Z/
+
+  def full_name
+    "#{self.first_name} #{self.second_name}"
+  end
 end

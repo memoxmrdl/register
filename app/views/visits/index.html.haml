@@ -1,0 +1,7 @@
+.content-visits
+  .container
+    .row
+      .col-md-4
+        %h3 Registro
+        = select_tag 'logbook', options_from_collection_for_select(@logbooks, 'id', 'full_name'), class: 'selectpicker', data: { 'live-search' => 'true' }
+      .col-md-8

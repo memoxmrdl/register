@@ -4,6 +4,7 @@
 //= require bootstrap-sprockets
 //= require app
 //= require logbooks
+//= require bootstrap-select.min
 
 $.fn.render_form_errors = function(errors){
   $form = this;
