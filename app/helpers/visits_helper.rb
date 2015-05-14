@@ -6,7 +6,7 @@ module VisitsHelper
         { 'data-photo' => image_url(logbook.photo.url), 'data-crendential' => image_url(logbook.credential.url) }]
       }),
       include_blank: true,
-      title: 'Buscar visitante',
+      title: 'Seleccionar visitante',
       data: {
         'live-search' => 'true',
         'size' => '10',
@@ -20,7 +20,7 @@ module VisitsHelper
       'select_office',
       options_from_collection_for_select(@offices, 'id', 'name'),
       include_blank: true,
-      title: 'Buscar departamentos',
+      title: 'Seleccionar departamentos',
       data: {
         'live-search' => 'true',
         'size' => '10',
