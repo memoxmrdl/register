@@ -11,8 +11,7 @@ class OfficesController < ApplicationController
     if @office.save
       redirect_to offices_path, notice: 'Departamento creado'
     else
-      flash.now[:alert] = 'Departamento ya existe o es vacio'
-      render :index
+      redirect_to offices_path, alert: 'Departamento ya existe o es vacio'
     end
   end
 
