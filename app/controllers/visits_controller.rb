@@ -1,13 +1,12 @@
 class VisitsController < ApplicationController
   before_action :load_data
+  before_action :find_logbook_and_office, only: :create
 
   def index
   end
 
   def create
     @visit = Visit.new
-    @logbook = Logbook.find(params[:select_logbook])
-    @office = Office.find(params[:select_office])
 
     @visit.register_at = DateTime.now
     @visit.logbook = @logbook
@@ -36,10 +35,25 @@ class VisitsController < ApplicationController
   private
 
   def load_data
-    @current_visits = Kaminari.paginate_array(Visit.current_visits).page(params[:current_visits_page]).per(10)
-    @past_visits = Kaminari.paginate_array(Visit.past_visits).page(params[:past_visits_page]).per(10)
+    @current_visits = kaminari_page(Visit.current_visits, params[:current_visits_page], 10)
+    @past_visits = kaminari_page(Visit.past_visits, params[:past_visits_page], 7)
     @logbooks = Logbook.all.reverse
     @offices = Office.all.reverse
     @visit = Visit.new
+  end
+
+  def kaminari_page(array, page, per)
+    Kaminari.paginate_array(array).page(page).per(per)
+  end
+
+  def find_logbook_and_office
+    @logbook = Logbook.find(params[:select_logbook])
+    @office = Office.find(params[:select_office])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to_with_error
+  end
+
+  def redirect_to_with_error
+    redirect_to visits_path, alert: 'Surgio un error inesperado'
   end
 end
