@@ -32,13 +32,11 @@ ActiveRecord::Schema.define(version: 20150501002136) do
   end
 
   create_table "offices", force: :cascade do |t|
-    t.integer  "visit_id"
     t.string   "name",       null: false
+    t.integer  "visit_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
-  add_index "offices", ["visit_id"], name: "index_offices_on_visit_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false
@@ -60,12 +58,10 @@ ActiveRecord::Schema.define(version: 20150501002136) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "visits", force: :cascade do |t|
-    t.integer  "logbook_id"
     t.datetime "register_at", null: false
+    t.integer  "logbook_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
-
-  add_index "visits", ["logbook_id"], name: "index_visits_on_logbook_id", using: :btree
 
 end
