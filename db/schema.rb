@@ -33,7 +33,6 @@ ActiveRecord::Schema.define(version: 20150501002136) do
 
   create_table "offices", force: :cascade do |t|
     t.string   "name",       null: false
-    t.integer  "visit_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -60,6 +59,7 @@ ActiveRecord::Schema.define(version: 20150501002136) do
   create_table "visits", force: :cascade do |t|
     t.datetime "register_at", null: false
     t.integer  "logbook_id"
+    t.integer  "office_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end

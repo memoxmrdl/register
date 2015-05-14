@@ -4,6 +4,7 @@ class CreateVisits < ActiveRecord::Migration
       t.datetime :register_at, null: false
 
       t.references :logbook
+      t.references :office
       t.timestamps null: false
     end
   end
