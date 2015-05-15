@@ -1,0 +1,18 @@
+.content-logbooks
+  .container
+    .row
+      .col-md-8
+        %h2 Visitante
+        .panel.panel-default
+          .panel-heading
+            %h3.panel-title
+              Nombre completo:
+              = @logbook.full_name
+          .panel-body
+            .row
+              .col-md-6
+                = image_tag(@logbook.photo.url, class: 'img-responsive')
+              .col-md-6
+                = image_tag(@logbook.credential.url, class: 'img-responsive')
+        = link_to 'Regresar', logbooks_path, class: 'btn btn-primary'
+      .col-md-4

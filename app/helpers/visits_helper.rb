@@ -22,7 +22,6 @@ module VisitsHelper
       include_blank: true,
       title: 'Seleccionar departamentos',
       data: {
-        'live-search' => 'true',
         'size' => '10',
         'width' => '100%'
       }
