@@ -1,0 +1,9 @@
+.container
+  .row
+    .col-md-12
+      %h1#welcome Bienvenido
+      %h2#youareher= "estas en #{@office.name}"
+  .row
+    .col-md-12
+      %hr
+      = render partial: 'offices/visit', collection: @visits

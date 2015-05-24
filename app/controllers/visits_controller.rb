@@ -44,8 +44,8 @@ class VisitsController < ApplicationController
   private
 
   def load_data
-    @current_visits = kaminari_page(Visit.current_visits.reverse, params[:current_visits_page], 10)
-    @past_visits = kaminari_page(Visit.past_visits.reverse, params[:past_visits_page], 7)
+    @current_visits_in = kaminari_page(Visit.current_visits.reverse, params[:current_visits_page], 10)
+    @past_visits_out = kaminari_page(Visit.past_visits.reverse, params[:past_visits_page], 7)
     @logbooks = Logbook.all.reverse
     @offices = Office.all.reverse
     @visit = Visit.new

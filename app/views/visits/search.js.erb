@@ -2,6 +2,7 @@
 $('#not-found-result').hide();
 $('#search-logbook-result').html('<%=j render(partial: "visits/logbook", collection: @logbooks) %>');
 <% else %>
+$('#search-logbook-result').html('');
 $('#not-found-result').show();
 <% end %>
 

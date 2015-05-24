@@ -1,9 +1,18 @@
 class OfficesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: :show
   before_action :offices, only: [:index, :edit]
 
   def index
     @office = Office.new
+  end
+
+  def show
+    @office = Office.friendly.find(params[:id])
+    @visits = Visit.current_visits.where(office: @office)
+
+    render layout: 'normal'
+  rescue ActiveRecord::RecordNotFound
+    render text: 'Surgio un problema contacte al administrador para reportar el problema'
   end
 
   def create

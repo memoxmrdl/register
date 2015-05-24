@@ -1,24 +1,27 @@
-%h3 Visitas recientes (activas)
-%table.table.table-bordered
-  %thead
-    %tr
-      %th Foto
-      %th Visitante
-      %th Departamento
-      %th Hora de entrada
-      %th.col-sm-1 Salida
-  %tbody
-    = render partial: 'current_visit', collection: @current_visits, as: :visit
-= paginate @current_visits, param_name: "current_visits_page"
+%h3 Visitas recientes
+.panel.panel-success
+  .panel-heading Activas
+  %table.table.table-condensed
+    %thead
+      %tr
+        %th Foto
+        %th Visitante
+        %th Departamento
+        %th Hora de entrada
+        %th.col-sm-1 Salida
+    %tbody
+      = render partial: 'current_visit', collection: @current_visits_in, as: :visit
+  = paginate @current_visits_in, param_name: "current_visits_page"
 
-%h3 Visitas antiguas
-%table.table.table-bordered
-  %thead
-    %tr
-      %th Visitante
-      %th Departamento
-      %th Hora de entrada
-      %th Hora de salida
-  %tbody
-    = render partial: 'past_visit', collection: @past_visits, as: :visit
-= paginate @past_visits, param_name: "past_visits_page"
+.panel.panel-info
+  .panel-heading Salidas
+  %table.table.table-condensed
+    %thead
+      %tr
+        %th Visitante
+        %th Departamento
+        %th Hora de entrada
+        %th Hora de salida
+    %tbody
+      = render partial: 'past_visit', collection: @past_visits_out, as: :visit
+  = paginate @past_visits_out, param_name: "past_visits_page"
