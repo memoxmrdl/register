@@ -20,11 +20,12 @@ module VisitsHelper
       'select_office',
       options_from_collection_for_select(@offices, 'id', 'name'),
       include_blank: true,
-      title: 'Seleccionar departamentos',
+      title: '',
       data: {
         'size' => '10',
         'width' => '100%'
-      }
+      },
+      class: 'selectpicker'
     )
   end
 end

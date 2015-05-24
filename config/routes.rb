@@ -12,4 +12,6 @@ Rails.application.routes.draw do
   end
 
   resources :logbooks
+
+  get '/search', to: 'visits#search', as: 'search_logbook'
 end

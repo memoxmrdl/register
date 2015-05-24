@@ -1,0 +1,12 @@
+%tr
+  %td= image_tag logbook.photo.url(:thumb), size: '70', class: 'img-responsive'
+  %td= logbook.first_name
+  %td= logbook.second_name
+  %td
+    = form_for @visit do |f|
+      = hidden_field_tag :select_logbook, logbook.id
+      .row
+        .col-md-6
+          = select_offices
+        .col-md-3
+          = f.submit 'Registrar', class: 'btn btn-default'

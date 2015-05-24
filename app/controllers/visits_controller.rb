@@ -3,6 +3,14 @@ class VisitsController < ApplicationController
   before_action :load_data
   before_action :find_logbook_and_office, only: :create
 
+  def search
+    @logbooks = Logbook.search(params[:search])
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def index
   end
 

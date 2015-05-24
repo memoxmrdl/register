@@ -17,4 +17,8 @@ class Logbook < ActiveRecord::Base
   def full_name
     "#{self.first_name} #{self.second_name}"
   end
+
+  def self.search(search)
+    where("first_name ILIKE ?", "%#{search}%")
+  end
 end

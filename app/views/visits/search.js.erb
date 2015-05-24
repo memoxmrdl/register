@@ -1,0 +1,10 @@
+<% if @logbooks.size > 0 %>
+$('#not-found-result').hide();
+$('#search-logbook-result').html('<%=j render(partial: "visits/logbook", collection: @logbooks) %>');
+<% else %>
+$('#not-found-result').show();
+<% end %>
+
+onLoad(function(){
+  new App.Utils.SelectsPickers();
+});

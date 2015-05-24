@@ -7,6 +7,6 @@ class SelectsPickers
     $('#select_logbook').selectpicker()
 
   selectOffice: ->
-    $('#select_office').selectpicker()
+    $('.selectpicker').selectpicker()
 
 App.Utils.SelectsPickers = SelectsPickers
