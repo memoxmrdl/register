@@ -1,12 +1,12 @@
 class OfficesController < ApplicationController
-  before_action :authenticate_user!, except: :show
+  before_action :authenticate_user!, except: :visits
   before_action :offices, only: [:index, :edit]
 
   def index
     @office = Office.new
   end
 
-  def show
+  def visits
     @office = Office.friendly.find(params[:id])
     @visits = Visit.current_visits.where(office: @office)
 

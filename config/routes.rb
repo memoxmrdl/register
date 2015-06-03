@@ -9,9 +9,14 @@ Rails.application.routes.draw do
     get 'output', on: :member
   end
 
-  resources :offices
+  resources :offices do
+    resources :staffs
+  end
+
+  resources :position
   resources :logbooks
 
+  get '/office/visits/:id', to: 'offices#visits', as: 'office_visits'
   get '/reports', to: 'reports#show', as: 'reports'
   get '/search', to: 'visits#search', as: 'search_logbook'
 end
