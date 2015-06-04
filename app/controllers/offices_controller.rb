@@ -6,6 +6,10 @@ class OfficesController < ApplicationController
     @office = Office.new
   end
 
+  def show
+    @office = Office.friendly.find(params[:id])
+  end
+
   def visits
     @office = Office.friendly.find(params[:id])
     @visits = Visit.current_visits.where(office: @office)
