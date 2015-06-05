@@ -109,15 +109,34 @@ CamWebPhoto = ->
       return
     ), false
 
-    $('.cancelWebCam').on 'click', (e) ->
+    $('#camwebPhoto').on 'hide.bs.modal', (e) ->
       localMediaStream.stop()
+      $('.againWebCam').hide()
+      $('.saveWebCam').hide()
+      $('#takePhoto').show()
+    .on 'show.bs.modal', (e) ->
+      video.src = ''
 
-    $('#takePhoto').on 'click', ->
+    $('.againWebCam').on 'click', (e) ->
+      video.play()
+      $('.againWebCam').hide()
+      $('.saveWebCam').hide()
+      $('#takePhoto').show()
+
+    $('.saveWebCam').on 'click', (e) ->
       canvas.width = width
       canvas.height = height
       canvas.getContext('2d').drawImage(video, 0, 0, width, height)
       dataURL = canvas.toDataURL('image/png')
       $("#logbook_photo_preview").attr('src', dataURL)
+      $('#camwebPhoto').modal('hide')
+
+    $('#takePhoto').on 'click', ->
+      video.pause()
+      $('.againWebCam').show()
+      $('.saveWebCam').show()
+      $('#takePhoto').hide()
+
 
 App.Utils.CamWebPhoto = CamWebPhoto
 
@@ -164,15 +183,34 @@ CamWebCredential = ->
       return
     ), false
 
-    $('.cancelWebCam').on 'click', (e) ->
+    $('#camwebCredential').on 'hide.bs.modal', (e) ->
       localMediaStream.stop()
+      $('.againWebCam').hide()
+      $('.saveWebCam').hide()
+      $('#takeCredential').show()
+    .on 'show.bs.modal', (e) ->
+      video.src = ''
 
-    $('#takeCredential').on 'click', ->
+    $('.againWebCam').on 'click', (e) ->
+      video.play()
+      $('.againWebCam').hide()
+      $('.saveWebCam').hide()
+      $('#takeCredential').show()
+
+    $('.saveWebCam').on 'click', (e) ->
       canvas.width = width
       canvas.height = height
       canvas.getContext('2d').drawImage(video, 0, 0, width, height)
       dataURL = canvas.toDataURL('image/png')
       $("#logbook_credential_preview").attr('src', dataURL)
+      $('#camwebCredential').modal('hide')
+
+    $('#takeCredential').on 'click', ->
+      video.pause()
+      $('.againWebCam').show()
+      $('.saveWebCam').show()
+      $('#takeCredential').hide()
+
 
 App.Utils.CamWebCredential = CamWebCredential
 

@@ -9,5 +9,6 @@
         %video{width: '480', id: "video#{name}"}
         %canvas{style: 'display:none', id: "canvas#{name}"}
       .modal-footer
-        %button.cancelWebCam.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Cancelar
+        %button.againWebCam.btn.btn-primary{:type => "button", style: 'display:none'} Repetir foto
+        %button.saveWebCam.btn.btn-default{:type => "button", style: 'display:none'} Guardar
         %button.btn.btn-primary{:type => "button", id: "take#{name}"} Tomar foto

@@ -67,6 +67,17 @@ class LogbooksController < ApplicationController
     end
   end
 
+  def destroy
+    @logbook = Logbook.find(params[:id])
+
+    if @logbook
+      @logbook.destroy
+      redirect_to logbooks_path, notice: 'Visitante eliminado'
+    else
+      redirect_to logbooks_path, alert: 'No se encontro el Visitante'
+    end
+  end
+
   private
 
   def logbook_params

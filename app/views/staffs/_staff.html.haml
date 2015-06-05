@@ -2,4 +2,4 @@
   %td= staff.name
   %td= staff.position
   %td= link_to 'Editar', edit_office_staff_path(@office, staff), class: 'btn btn-info btn-xs'
-  %td= link_to 'Eliminar', office_staff_path(@office, staff), method: :delete, class: 'btn btn-danger btn-xs'
+  %td= link_to 'Eliminar', office_staff_path(@office, staff), method: :delete, class: 'btn btn-danger btn-xs confirmation'

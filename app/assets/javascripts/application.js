@@ -52,4 +52,8 @@ onLoad(function(){
       $(this).remove();
     });
   }, 1000);
+
+  $('.confirmation').on('click', function () {
+    return confirm('¿Esta seguro de eliminar este registro?');
+  });
 });
