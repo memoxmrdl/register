@@ -3,6 +3,7 @@
     .col-md-6
       .row
         .col-sm-6
+          = link_to_back
           %h3= "Departamento: #{@office.name}"
         .col-sm-6.text-right
           = link_to 'Nuevo staff', new_office_staff_path(@office), class: 'btn btn-primary mt-20 mb-10'
@@ -11,6 +12,7 @@
         %thead
           %tr
             %th Nombre
+            %th Puesto
             %th.col-sm-1 Editar
             %th.col-sm-1 Eliminar
         %tbody

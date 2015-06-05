@@ -30,13 +30,14 @@ class OfficesController < ApplicationController
   end
 
   def edit
-    @office = Office.find(params[:id])
+    @office = Office.friendly.find(params[:id])
   end
 
   def update
-    @office = Office.find(params[:id])
+    @office = Office.friendly.find(params[:id])
 
     if @office
+      @office.slug = nil
       @office.update_attributes(office_params)
       redirect_to offices_path, notice: 'Departamento actualizado'
     else
@@ -46,7 +47,7 @@ class OfficesController < ApplicationController
   end
 
   def destroy
-    @office = Office.find(params[:id])
+    @office = Office.friendly.find(params[:id])
 
     if @office
       @office.destroy
