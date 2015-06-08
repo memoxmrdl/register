@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150605043809) do
+ActiveRecord::Schema.define(version: 20150608232252) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -95,6 +95,10 @@ ActiveRecord::Schema.define(version: 20150605043809) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.datetime "output_at"
+    t.integer  "staff_id"
   end
 
+  add_index "visits", ["staff_id"], name: "index_visits_on_staff_id", using: :btree
+
+  add_foreign_key "visits", "staffs"
 end
