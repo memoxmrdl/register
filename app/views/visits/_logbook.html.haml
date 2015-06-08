@@ -6,7 +6,9 @@
     = form_for @visit do |f|
       = hidden_field_tag :select_logbook, logbook.id
       .row
-        .col-md-6
+        .col-md-4
           = select_offices
+        .col-md-5
+          = select_staff
         .col-md-3
-          = f.submit 'Registrar', class: 'btn btn-default'
+          = f.submit 'Registrar', class: 'btn btn-success btn-xs'
