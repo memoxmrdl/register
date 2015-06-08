@@ -1,4 +1,6 @@
 class StaffsController < ApplicationController
+  before_action :authenticate_user!
+
   def new
     @office = Office.friendly.find(params[:office_id])
     @staff = Staff.new
