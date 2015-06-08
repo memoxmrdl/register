@@ -3,5 +3,5 @@ class Staff < ActiveRecord::Base
 
   belongs_to :office
 
-  has_many :staffs
+  has_one :visit
 end
