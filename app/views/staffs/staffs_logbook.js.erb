@@ -1,0 +1,5 @@
+<% if @staffs %>
+$("#staff-<%= params[:logbook_id] %>").html('<%=j options_from_collection_for_select(@staffs, "id", "name") %>').selectpicker('refresh')
+<% else %>
+$("#staff-<%= params[:logbook_id] %>").html('<option value></option>').selectpicker('refresh')
+<% end %>

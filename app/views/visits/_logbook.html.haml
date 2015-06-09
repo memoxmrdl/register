@@ -7,8 +7,8 @@
       = hidden_field_tag :select_logbook, logbook.id
       .row
         .col-md-5
-          = select_offices
+          = select_offices(logbook)
         .col-md-4
-          = select_staff
+          = select_staff(logbook)
         .col-md-3
           = f.submit 'Registrar', class: 'btn btn-success btn-xs'

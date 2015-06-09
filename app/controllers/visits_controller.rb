@@ -20,6 +20,7 @@ class VisitsController < ApplicationController
     @visit.register_at = DateTime.now
     @visit.logbook = @logbook
     @visit.office = @office
+    @visit.staff = @staff
 
     if @visit.save
       redirect_to visits_path, notice: 'Visita registrada correctamente'
@@ -58,6 +59,7 @@ class VisitsController < ApplicationController
   def find_logbook_and_office
     @logbook = Logbook.find(params[:select_logbook])
     @office = Office.find(params[:select_office])
+    @staff = Staff.find(params[:select_staff])
   rescue ActiveRecord::RecordNotFound
     redirect_to_with_error
   end

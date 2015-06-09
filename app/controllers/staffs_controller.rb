@@ -6,6 +6,14 @@ class StaffsController < ApplicationController
     @staff = Staff.new
   end
 
+  def staffs_logbook
+    @staffs = Staff.where(office_id: params[:office_id])
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def create
     @office = Office.friendly.find(params[:office_id])
     @staff = Staff.new(staff_params)
