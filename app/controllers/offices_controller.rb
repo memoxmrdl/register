@@ -1,5 +1,6 @@
 class OfficesController < ApplicationController
   before_action :authenticate_user!, except: :visits
+  before_action :office, except: [:index, :create]
   before_action :offices, only: [:index, :edit]
 
   def index
@@ -7,11 +8,9 @@ class OfficesController < ApplicationController
   end
 
   def show
-    @office = Office.friendly.find(params[:id])
   end
 
   def visits
-    @office = Office.friendly.find(params[:id])
     @visits = Visit.current_visits.where(office: @office)
 
     render layout: 'normal'
@@ -30,12 +29,9 @@ class OfficesController < ApplicationController
   end
 
   def edit
-    @office = Office.friendly.find(params[:id])
   end
 
   def update
-    @office = Office.friendly.find(params[:id])
-
     if @office
       @office.slug = nil
       @office.update_attributes(office_params)
@@ -47,8 +43,6 @@ class OfficesController < ApplicationController
   end
 
   def destroy
-    @office = Office.friendly.find(params[:id])
-
     if @office
       @office.destroy
       redirect_to offices_path, notice: 'Departamento eliminado'
@@ -65,5 +59,9 @@ class OfficesController < ApplicationController
 
   def offices
     @offices = Kaminari.paginate_array(Office.all.reverse).page(params[:page]).per(10)
+  end
+
+  def office
+    @office = Office.friendly.find(params[:id])
   end
 end
