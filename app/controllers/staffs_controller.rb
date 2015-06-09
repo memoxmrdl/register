@@ -1,8 +1,8 @@
 class StaffsController < ApplicationController
   before_action :authenticate_user!
+  before_action :office, only: [:new, :create]
 
   def new
-    @office = Office.friendly.find(params[:office_id])
     @staff = Staff.new
   end
 
@@ -15,7 +15,6 @@ class StaffsController < ApplicationController
   end
 
   def create
-    @office = Office.friendly.find(params[:office_id])
     @staff = Staff.new(staff_params)
     @staff.office = @office
 
@@ -59,5 +58,9 @@ class StaffsController < ApplicationController
 
   def staff_params
     params.require(:staff).permit(:name, :position)
+  end
+
+  def office
+    @office = Office.friendly.find(params[:office_id])
   end
 end
