@@ -1,4 +1,6 @@
 class LogbooksController < ApplicationController
+  include Functions::LogbooksHelper
+
   before_action :authenticate_user!
   before_action :set_logbook, except: [:index, :create]
   before_action :set_logbooks, only: [:index, :edit]
@@ -16,13 +18,8 @@ class LogbooksController < ApplicationController
   def create
     @logbook = Logbook.new(logbook_params)
 
-    photo = Paperclip.io_adapters.for(params[:logbook][:photo])
-    photo.original_filename = 'photo.png'
-    @logbook.photo = photo
-
-    credential = Paperclip.io_adapters.for(params[:logbook][:credential])
-    credential.original_filename = 'credential.png'
-    @logbook.credential = credential
+    @logbook.photo = paperclip_blob_file(logbook_params[:photo], 'photo.png')
+    @logbook.credential = paperclip_blob_file(logbook_params[:credential], 'credential.png')
 
     respond_to do |format|
       if @logbook.save
