@@ -1,6 +1,6 @@
 class OfficesController < ApplicationController
   before_action :authenticate_user!, except: :visits
-  before_action :set_office, except: [:index, :create]
+  before_action :set_office, except: [:index, :create]
   before_action :set_offices, only: [:index, :edit]
 
   def index
