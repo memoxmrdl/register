@@ -1,6 +1,7 @@
 class StaffsController < ApplicationController
   before_action :authenticate_user!
-  before_action :office, only: [:new, :create]
+  before_action :set_office, only: [:new, :create]
+  before_action :set_staff, only: [:edit, :update, :destroy]
 
   def new
     @staff = Staff.new
@@ -27,13 +28,10 @@ class StaffsController < ApplicationController
   end
 
   def edit
-    @staff = Staff.find(params[:id])
     @office = @staff.office
   end
 
   def update
-    @staff = Staff.find(params[:id])
-
     if @staff.update_attributes(staff_params)
       redirect_to office_path(@staff.office), notice: 'Staff actualizado'
     else
@@ -43,7 +41,6 @@ class StaffsController < ApplicationController
   end
 
   def destroy
-    @staff = Staff.find(params[:id])
     @office = @staff.office
 
     if @staff
@@ -60,7 +57,11 @@ class StaffsController < ApplicationController
     params.require(:staff).permit(:name, :position)
   end
 
-  def office
+  def set_office
     @office = Office.friendly.find(params[:office_id])
+  end
+
+  def set_staff
+    @staff = Staff.find(params[:id])
   end
 end

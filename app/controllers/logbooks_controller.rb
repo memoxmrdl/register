@@ -1,17 +1,16 @@
 class LogbooksController < ApplicationController
   before_action :authenticate_user!
-  before_action :logbooks, only: [:index, :edit]
+  before_action :set_logbook, except: [:index, :create]
+  before_action :set_logbooks, only: [:index, :edit]
 
   def index
     @logbook = Logbook.new
   end
 
   def show
-    @logbook = Logbook.find(params[:id])
   end
 
   def edit
-    @logbook = Logbook.find(params[:id])
   end
 
   def create
@@ -40,8 +39,6 @@ class LogbooksController < ApplicationController
   end
 
   def update
-    @logbook = Logbook.find(params[:id])
-
     @logbook.first_name = logbook_params[:first_name]
     @logbook.second_name = logbook_params[:second_name]
 
@@ -68,8 +65,6 @@ class LogbooksController < ApplicationController
   end
 
   def destroy
-    @logbook = Logbook.find(params[:id])
-
     if @logbook
       @logbook.destroy
       redirect_to logbooks_path, notice: 'Visitante eliminado'
@@ -89,7 +84,11 @@ class LogbooksController < ApplicationController
     )
   end
 
-  def logbooks
+  def set_logbook
+    @logbook = Logbook.find(params[:id])
+  end
+
+  def set_logbooks
     @logbooks = Kaminari.paginate_array(Logbook.all.reverse).page(params[:page]).per(8)
   end
 end

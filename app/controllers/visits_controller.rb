@@ -1,7 +1,7 @@
 class VisitsController < ApplicationController
   before_action :authenticate_user!
   before_action :load_data
-  before_action :find_logbook_and_office, only: :create
+  before_action :set_logbook_and_office, only: :create
 
   def search
     @logbooks = Logbook.search(params[:search])
@@ -56,7 +56,7 @@ class VisitsController < ApplicationController
     Kaminari.paginate_array(array).page(page).per(per)
   end
 
-  def find_logbook_and_office
+  def set_logbook_and_office
     @logbook = Logbook.find(params[:select_logbook])
     @office = Office.find(params[:select_office])
     @staff = Staff.find(params[:select_staff])

@@ -1,7 +1,7 @@
 class OfficesController < ApplicationController
   before_action :authenticate_user!, except: :visits
-  before_action :office, except: [:index, :create]
-  before_action :offices, only: [:index, :edit]
+  before_action :set_office, except: [:index, :create]
+  before_action :set_offices, only: [:index, :edit]
 
   def index
     @office = Office.new
@@ -57,11 +57,11 @@ class OfficesController < ApplicationController
     params.require(:office).permit(:name)
   end
 
-  def offices
+  def set_offices
     @offices = Kaminari.paginate_array(Office.all.reverse).page(params[:page]).per(10)
   end
 
-  def office
+  def set_office
     @office = Office.friendly.find(params[:id])
   end
 end
