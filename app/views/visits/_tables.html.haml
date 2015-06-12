@@ -4,7 +4,7 @@
   %table.table.table-condensed
     %thead
       %tr
-        %th 
+        %th.col-sm-1 
         %th Visitante
         %th Departamento
         %th Visita a
@@ -13,13 +13,12 @@
     %tbody
       = render partial: 'current_visit', collection: @current_visits_in, as: :visit
   = paginate @current_visits_in, param_name: "current_visits_page"
-
 .panel.panel-info
   .panel-heading Salidas
   %table.table.table-condensed
     %thead
       %tr
-        %th 
+        %th.col-sm-1 
         %th Visitante
         %th Departamento
         %th Visita a
