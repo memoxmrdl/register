@@ -2,9 +2,10 @@
 .content-visits
   .container
     .row
-      .col-md-7
+      .col-md-6
         = render 'search'
-      .col-md-5
+    .row
+      .col-md-12
         = render 'tables'
 
 = content_for :javascripts do
