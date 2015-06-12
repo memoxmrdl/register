@@ -22,4 +22,20 @@ module ReportsHelper
       class: 'selectpicker'
     )
   end
+
+  def count_current_visits
+    Visit.current_visits.count
+  end
+
+  def office_more_visited
+    Office.more_visited
+  end
+
+  def staff_more_visited
+    Staff.more_visited
+  end
+
+  def logbook_very_active
+    Logbook.very_active
+  end
 end

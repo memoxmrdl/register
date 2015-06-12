@@ -18,7 +18,13 @@ class Logbook < ActiveRecord::Base
     "#{self.first_name} #{self.second_name}"
   end
 
-  def self.search(search)
-    where("first_name ILIKE ?", "%#{search}%")
+  class << self
+    def search(search)
+      where("first_name ILIKE ?", "%#{search}%")
+    end
+
+    def very_active
+      find(Visit.maximum(:logbook_id))
+    end
   end
 end

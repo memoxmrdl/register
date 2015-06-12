@@ -7,4 +7,10 @@ class Office < ActiveRecord::Base
   has_many :staff
 
   validates :name, presence: true, uniqueness: true
+
+  class << self
+    def more_visited
+      find(Visit.maximum(:office_id))
+    end
+  end
 end

@@ -3,8 +3,33 @@
 .content-reports
   .container
     .row
+      .col-lg-12
+        %h4 Reporte del día
+    .row
+      .col-lg-3
+        .panel.panel-success
+          .panel-heading Visitantes activos
+          .panel-body.text-center
+            %h4= count_current_visits
+      .col-lg-3
+        .panel.panel-primary
+          .panel-heading Mas Activo (Visitante)
+          .panel-body
+            %h4= logbook_very_active.full_name
+      .col-lg-3
+        .panel.panel-primary
+          .panel-heading Mas visitado (Departamento)
+          .panel-body.text-center
+            %h4= office_more_visited.name
+      .col-lg-3
+        .panel.panel-primary
+          .panel-heading Mas visitado (Personal)
+          .panel-body.text-center
+            %h4= staff_more_visited.name
+        
+    .row
       .col-lg-12.col-md-12-col-sm-12
-        %h3 Generar Reporte
+        %h4 Generar Reporte
         %hr
     .row
       = form_tag(reports_path, method: :get, authenticity_token: false, class: 'form-inline') do

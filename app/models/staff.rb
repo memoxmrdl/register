@@ -4,4 +4,10 @@ class Staff < ActiveRecord::Base
   belongs_to :office
 
   has_one :visit
+
+  class << self
+    def more_visited
+      find(Visit.maximum(:staff_id))
+    end
+  end
 end
