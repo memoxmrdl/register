@@ -1,0 +1,7 @@
+%tr
+  %th= image_tag visit.logbook.try(:photo).try(:url), size: '100', class: 'img-responsive'
+  %th= visit.try(:logbook).try(:full_name)
+  %th= visit.try(:office).try(:name)
+  %th= visit.try(:staff).try(:name)
+  %th= visit.register_at
+  %th= visit.output_at

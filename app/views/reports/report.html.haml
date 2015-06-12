@@ -1,0 +1,34 @@
+- title 'Reportes'
+
+.content-reports
+  .container
+    .row
+      .col-lg-12.col-md-12-col-sm-12
+        %h3 Generar Reporte
+        %hr
+    .row
+      = form_tag(reports_path, method: :get, authenticity_token: false, class: 'form-inline') do
+        .col-lg-11.col-md-11.col-sm-2
+          .form-group
+            = datetime_tag :start_date, 'Fecha inicial'
+          .form-group
+            = label_tag 'al'
+          .form-group
+            = datetime_tag :end_date, 'Fecha final'
+          .form-group
+            = datetime_tag :hour, 'Hora'
+          .form-group
+            = selectpicker_tag(@offices, :office, :name, 'Departamentos')
+          .form-group
+            = selectpicker_tag(@logbooks, :logbook, :full_name, 'Visitantes')
+        .col-lg-1.col-md-1.col-sm-1
+          = submit_tag 'Consultar', class: 'btn btn-primary'
+    .row
+      .col-lg-12.col-md-12.col-sm-12
+        = render 'table'
+
+- content_for :javascripts do
+  :javascript
+    onLoad(function(){
+      new App.Utils.Reports();
+    })

@@ -1,0 +1,11 @@
+%table#results.table.table-condensed
+  %thead
+    %tr
+      %th Foto
+      %th Nombre
+      %th Departamento que visito
+      %th Visito a
+      %th Hora de entrada
+      %th Hora de salida
+  %tbody
+    = render partial: 'visit', collection: @visits

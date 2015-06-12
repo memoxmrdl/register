@@ -5,6 +5,7 @@
 //= require app
 //= require logbooks
 //= require visits
+//= require reports
 //= require bootstrap-select.min
 //= require moment
 //= require bootstrap-datetimepicker

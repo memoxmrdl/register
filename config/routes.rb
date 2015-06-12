@@ -18,6 +18,6 @@ Rails.application.routes.draw do
 
   get '/logbooks/:logbook_id/offices/:office_id/staffs', to: 'staffs#staffs_logbook'
   get '/office/visits/:id', to: 'offices#visits', as: 'office_visits'
-  get '/reports', to: 'reports#show', as: 'reports'
+  get '/report', to: 'reports#report', as: 'reports'
   get '/search', to: 'visits#search', as: 'search_logbook'
 end

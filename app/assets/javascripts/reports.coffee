@@ -1,3 +1,16 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+class Reports
+  constructor: ->
+    @initDateTimePickers()
+    @initSelects()
+
+  initDateTimePickers: ->
+    $('#datetime-start_date, #datetime-end_date').datetimepicker
+      format: 'DD/MM/YYYY'
+
+    $('#datetime-hour').datetimepicker
+      format: 'hh:mm'
+
+  initSelects: ->
+    $('.selectpicker').selectpicker()
+
+App.Utils.Reports = Reports
