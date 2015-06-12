@@ -1,5 +1,6 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import 'bootstrap-datetimepicker';
 @import "devise";
 @import "logbooks";
 @import "offices";
@@ -7,6 +8,7 @@
 @import "reports";
 @import "global";
 @import "bootstrap-select.min";
+
 
 body {
   margin-top: 60px;

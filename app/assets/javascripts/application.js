@@ -6,6 +6,8 @@
 //= require logbooks
 //= require visits
 //= require bootstrap-select.min
+//= require moment
+//= require bootstrap-datetimepicker
 
 window.onLoad = function(callback) {
   $(document).ready(callback);
