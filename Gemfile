@@ -22,6 +22,7 @@ gem 'kaminari'
 gem 'friendly_id'
 gem 'momentjs-rails', '>= 2.8.1'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.7.14'
+gem 'chartkick'
 
 group :development do
   gem 'better_errors'
