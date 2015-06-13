@@ -41,8 +41,6 @@
           .form-group
             = datetime_tag :end_date, 'Fecha final'
           .form-group
-            = datetime_tag :hour, 'Hora'
-          .form-group
             = selectpicker_tag(@offices, :office, :name, 'Departamentos')
           .form-group
             = selectpicker_tag(@logbooks, :logbook, :full_name, 'Visitantes')

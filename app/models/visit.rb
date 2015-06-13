@@ -12,12 +12,18 @@ class Visit < ActiveRecord::Base
   scope :past_visits,
     -> { where('register_at::timestamp::date = ? AND output_at IS NOT NULL', Time.zone.now.to_date) }
 
+  scope :register_between,
+    lambda {|start_date, end_date| where("register_at >= ? AND register_at <= ?", start_date, end_date )}
+
+  scope :output_between,
+    lambda {|start_date, end_date| where("output_at >= ? AND output_at <= ?", start_date, end_date )}
+
   class << self
     def search(a = nil, b = nil, c = nil, d = nil)
       if a.blank? && b.blank? && c.blank? && d.blank?
         all
       else
-        where('register_at::timestamp::date = ? OR output_at::timestamp::date = ? OR office_id = ? OR logbook_id = ?', a, b, c, d)
+        where('(register_at >= ? AND register_at <= ?) OR office_id = ? OR logbook_id = ?', Time.parse(a), Time.parse(b), c, d)
       end
     end
   end

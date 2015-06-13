@@ -15,8 +15,7 @@ class ReportsController < ApplicationController
     param_empty_convert_null(:logbook)
 
     @visits = Visit.search(params[:start_date], params[:end_date], params[:office], params[:logbook])
-
-    puts ">>>> #{params.empty?} #{@visits.count} %% #{@visits.inspect}"
+    #@visits = Visit.register_between(params[:start_date], params[:end_date])
   end
 
   def param_empty_convert_null(item)
