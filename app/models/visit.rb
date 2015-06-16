@@ -13,11 +13,13 @@ class Visit < ActiveRecord::Base
     -> { where('register_at::timestamp::date = ? AND output_at IS NOT NULL', Time.zone.now.to_date) }
 
   scope :by_period,
-    -> started_at, ended_at { where("register_at >= ? AND output_at <= ?", started_at, ended_at) }
+    -> started_at, ended_at { where("register_at >= ? AND output_at <= ?", started_at, ended_at).where.not(output_at: nil) }
 
   scope :office,
-    -> office { where(office_id: office) }
+    -> office { where(office_id: office).where.not(output_at: nil) }
 
   scope :logbook,
-    -> logbook { where(logbook_id: logbook) }
+    -> logbook { where(logbook_id: logbook).where.not(output_at: nil) }
+
+  scope :all_without_output, -> { all.where.not(output_at: nil) }
 end
