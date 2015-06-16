@@ -1,7 +1,7 @@
 module ReportsHelper
-  def datetime_tag(name, placeholder = '')
+  def datetime_tag(name, id, placeholder = '')
     name = name.to_s
-    content_tag(:div, class: 'input-group date datetime-picker', id: "datetime-#{name}") do
+    content_tag(:div, class: 'input-group date datetime-picker', id: id) do
       content = text_field_tag(name, '', class: 'form-control', placeholder: placeholder)
       content << content_tag(:span, class: 'input-group-addon') do
         content_tag(:span, '', class: 'glyphicon glyphicon-calendar')

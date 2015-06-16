@@ -15,9 +15,9 @@ Rails.application.routes.draw do
 
   resources :position
   resources :logbooks
+  resources :reports, only: :index
 
   get '/logbooks/:logbook_id/offices/:office_id/staffs', to: 'staffs#staffs_logbook'
   get '/office/visits/:id', to: 'offices#visits', as: 'office_visits'
-  get '/report', to: 'reports#report', as: 'reports'
   get '/search', to: 'visits#search', as: 'search_logbook'
 end

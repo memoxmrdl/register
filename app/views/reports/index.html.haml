@@ -35,11 +35,11 @@
       = form_tag(reports_path, method: :get, authenticity_token: false, class: 'form-inline') do
         .col-lg-11.col-md-11.col-sm-2
           .form-group
-            = datetime_tag :start_date, 'Fecha inicial'
+            = datetime_tag 'by_period[started_at]', 'datetime-started-date', 'Fecha inicial'
           .form-group
             = label_tag 'al'
           .form-group
-            = datetime_tag :end_date, 'Fecha final'
+            = datetime_tag 'by_period[ended_at]', 'datetime-ended-date', 'Fecha final'
           .form-group
             = selectpicker_tag(@offices, :office, :name, 'Departamentos')
           .form-group
