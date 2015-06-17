@@ -3,5 +3,5 @@
   %td= visit.try(:logbook).try(:full_name)
   %td= visit.try(:office).try(:name)
   %td= visit.try(:staff).try(:name)
-  %td= visit.register_at
-  %td= visit.output_at
+  %td= visit.register_at.strftime('%Y-%m-%d %H:%M')
+  %td= visit.output_at.strftime('%Y-%m-%d %H:%M')
