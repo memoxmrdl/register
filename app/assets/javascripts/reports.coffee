@@ -4,8 +4,8 @@ class Reports
     @initSelects()
 
   initDateTimePickers: ->
-    $('#datetime-start_date, #datetime-end_date').datetimepicker
-      format: "YYYY-MM-DD HH:mm A"
+    $('#datetime-started-date, #datetime-ended-date').datetimepicker
+      format: "YYYY-MM-DD HH:mm"
 
     $('#datetime-hour').datetimepicker
       format: 'hh:mm'
