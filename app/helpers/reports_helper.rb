@@ -23,8 +23,8 @@ module ReportsHelper
     )
   end
 
-  def count_current_visits
-    Visit.current_visits.count
+  def count_current_register
+    Visit.current_register.count
   end
 
   def office_more_visited

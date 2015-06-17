@@ -10,11 +10,11 @@
         .panel.panel-success
           .panel-heading Visitantes activos
           .panel-body.text-center
-            %h4= count_current_visits
+            %h4= count_current_register
       .col-lg-3
         .panel.panel-primary
           .panel-heading Mas Activo (Visitante)
-          .panel-body
+          .panel-body.text-center
             %h4= logbook_very_active.full_name
       .col-lg-3
         .panel.panel-primary
@@ -26,26 +26,12 @@
           .panel-heading Mas visitado (Personal)
           .panel-body.text-center
             %h4= staff_more_visited.name
-        
     .row
       .col-lg-12.col-md-12-col-sm-12
         %h4 Generar Reporte
         %hr
     .row
-      = form_tag(reports_path, method: :get, authenticity_token: false, class: 'form-inline') do
-        .col-lg-11.col-md-11.col-sm-2
-          .form-group
-            = datetime_tag 'by_period[started_at]', 'datetime-started-date', 'Fecha inicial'
-          .form-group
-            = label_tag 'al'
-          .form-group
-            = datetime_tag 'by_period[ended_at]', 'datetime-ended-date', 'Fecha final'
-          .form-group
-            = selectpicker_tag(@offices, :office, :name, 'Departamentos')
-          .form-group
-            = selectpicker_tag(@logbooks, :logbook, :full_name, 'Visitantes')
-        .col-lg-1.col-md-1.col-sm-1
-          = submit_tag 'Consultar', class: 'btn btn-primary'
+      = render 'form'
     .row
       .col-lg-12.col-md-12.col-sm-12
         = render 'table'
