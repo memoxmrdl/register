@@ -1,5 +1,6 @@
 class ReportsController < ApplicationController
-  before_action :authenticate_user!
+  include Userable
+
   before_action :set_offices_and_logbooks
 
   has_scope :by_period, using: [:started_at, :ended_at], type: :hash

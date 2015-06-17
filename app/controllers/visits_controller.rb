@@ -1,5 +1,6 @@
 class VisitsController < ApplicationController
-  before_action :authenticate_user!
+  include Userable
+
   before_action :load_data
   before_action :set_logbook_and_office, only: :create
 

@@ -1,5 +1,6 @@
 class LogbooksController < ApplicationController
-  before_action :authenticate_user!
+  include Userable
+
   before_action :set_logbook, except: [:index, :create]
   before_action :set_logbooks, only: [:index, :edit]
 
