@@ -28,14 +28,14 @@ module ReportsHelper
   end
 
   def office_more_visited
-    Office.more_visited
+    Visit.more_visited(:office_id).map {|i| i.office.name }.join(', ')
   end
 
   def staff_more_visited
-    Staff.more_visited
+    Visit.more_visited(:staff_id).map {|i| i.staff.name }.join(', ')
   end
 
   def logbook_very_active
-    Logbook.very_active
+    Visit.more_visited(:logbook_id).map {|i| i.logbook.full_name }.join(', ')
   end
 end

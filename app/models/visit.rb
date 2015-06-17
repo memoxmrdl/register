@@ -25,4 +25,7 @@ class Visit < ActiveRecord::Base
     -> logbook { where(logbook_id: logbook).where.not(output_at: nil) }
 
   scope :all_without_output, -> { all.where.not(output_at: nil) }
+
+  scope :more_visited,
+    -> item { select(item).group(item).having('count(*) > 1') }
 end
