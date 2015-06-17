@@ -1,0 +1,17 @@
+.row
+  .col-md-12
+    %h3 Visitas pasadas sin salir
+    .panel.panel-danger
+      .panel-heading Activas pasadas
+      %table.table.table-condensed
+        %thead
+          %tr
+            %th.col-sm-1 
+            %th Visitante
+            %th Departamento
+            %th Visita a
+            %th Hora de entrada
+            %th.col-sm-1 Salida
+        %tbody
+          = render partial: 'current_visit', collection: @past_registers, as: :visit
+    = paginate @past_registers, param_name: 'past_registers_page'

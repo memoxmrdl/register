@@ -4,6 +4,7 @@
     .row
       .col-md-6
         = render 'search'
+    = render 'table_visits_past' if @past_registers.count > 0
     .row
       .col-md-12
         = render 'tables'

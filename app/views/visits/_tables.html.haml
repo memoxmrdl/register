@@ -11,8 +11,8 @@
         %th Hora de entrada
         %th.col-sm-1 Salida
     %tbody
-      = render partial: 'current_visit', collection: @current_visits_in, as: :visit
-  = paginate @current_visits_in, param_name: "current_visits_page"
+      = render partial: 'current_visit', collection: @current_registers, as: :visit
+= paginate @current_registers, param_name: "current_registers_page"
 .panel.panel-info
   .panel-heading Salidas
   %table.table.table-condensed
@@ -25,5 +25,5 @@
         %th Hora de entrada
         %th Hora de salida
     %tbody
-      = render partial: 'past_visit', collection: @past_visits_out, as: :visit
-  = paginate @past_visits_out, param_name: "past_visits_page"
+      = render partial: 'past_visit', collection: @current_outputs, as: :visit
+= paginate @current_outputs, param_name: "current_outputs_page"
