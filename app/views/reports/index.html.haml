@@ -1,0 +1,51 @@
+- title 'Reportes'
+
+.content-reports
+  .container
+    .row
+      .col-lg-12.col-md-12-col-sm-12
+        %h4 Generar Reporte
+        %hr
+    .row
+      = render 'form'
+    .row
+      .col-lg-12.col-md-12.col-sm-12
+        = render 'table'
+    .row
+      .col-lg-12
+        %h4 Reporte del día
+    .row
+      .col-lg-3
+        .panel.panel-success
+          .panel-heading Visitantes activos
+          .panel-body.text-center
+            %h4= count_current_register
+      .col-lg-3
+        .panel.panel-primary
+          .panel-heading Mas Activo (Visitante)
+          .panel-body.text-center
+            %h4= logbook_very_active
+      .col-lg-3
+        .panel.panel-primary
+          .panel-heading Mas visitado (Departamento)
+          .panel-body.text-center
+            %h4= office_more_visited
+      .col-lg-3
+        .panel.panel-primary
+          .panel-heading Mas visitado (Personal)
+          .panel-body.text-center
+            %h4= staff_more_visited
+    .row
+      .col-lg-6.text-center
+        = line_chart Visit.group_by_day(:register_at, range: 7.days.ago..Time.zone.now).count
+      .col-lg-6.text-center
+        = column_chart Visit.group_by_day(:output_at, range: 7.days.ago..Time.zone.now).count
+    .row
+      .col-lg-12.text-center
+        = pie_chart Visit.group(:office).count.map { |k,v| [k.name, v.size] }
+
+- content_for :javascripts do
+  :javascript
+    onLoad(function(){
+      new App.Utils.Reports();
+    })

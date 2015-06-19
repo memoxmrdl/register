@@ -1,7 +1,7 @@
 module ReportsHelper
-  def datetime_tag(name, placeholder = '')
+  def datetime_tag(name, id, placeholder = '')
     name = name.to_s
-    content_tag(:div, class: 'input-group date datetime-picker', id: "datetime-#{name}") do
+    content_tag(:div, class: 'input-group date datetime-picker', id: id) do
       content = text_field_tag(name, '', class: 'form-control', placeholder: placeholder)
       content << content_tag(:span, class: 'input-group-addon') do
         content_tag(:span, '', class: 'glyphicon glyphicon-calendar')
@@ -23,19 +23,19 @@ module ReportsHelper
     )
   end
 
-  def count_current_visits
-    Visit.current_visits.count
+  def count_current_register
+    Visit.current_register.count
   end
 
   def office_more_visited
-    Office.more_visited
+    Visit.more_visited(:office_id).map {|i| i.office.name }.join(', ')
   end
 
   def staff_more_visited
-    Staff.more_visited
+    Visit.more_visited(:staff_id).map {|i| i.staff.name }.join(', ')
   end
 
   def logbook_very_active
-    Logbook.very_active
+    Visit.more_visited(:logbook_id).map {|i| i.logbook.full_name }.join(', ')
   end
 end

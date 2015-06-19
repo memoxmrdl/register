@@ -1,5 +1,6 @@
 class StaffsController < ApplicationController
-  before_action :authenticate_user!
+  include Userable
+
   before_action :set_office, only: [:new, :create]
   before_action :set_staff, only: [:edit, :update, :destroy]
 
