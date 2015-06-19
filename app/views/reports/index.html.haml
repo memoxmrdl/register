@@ -3,6 +3,15 @@
 .content-reports
   .container
     .row
+      .col-lg-12.col-md-12-col-sm-12
+        %h4 Generar Reporte
+        %hr
+    .row
+      = render 'form'
+    .row
+      .col-lg-12.col-md-12.col-sm-12
+        = render 'table'
+    .row
       .col-lg-12
         %h4 Reporte del día
     .row
@@ -27,14 +36,13 @@
           .panel-body.text-center
             %h4= staff_more_visited
     .row
-      .col-lg-12.col-md-12-col-sm-12
-        %h4 Generar Reporte
-        %hr
+      .col-lg-6.text-center
+        = line_chart Visit.group_by_day(:register_at, range: 7.days.ago..Time.zone.now).count
+      .col-lg-6.text-center
+        = column_chart Visit.group_by_day(:output_at, range: 7.days.ago..Time.zone.now).count
     .row
-      = render 'form'
-    .row
-      .col-lg-12.col-md-12.col-sm-12
-        = render 'table'
+      .col-lg-12.text-center
+        = pie_chart Visit.group(:office).count.map { |k,v| [k.name, v.size] }
 
 - content_for :javascripts do
   :javascript

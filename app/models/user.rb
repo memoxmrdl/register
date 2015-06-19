@@ -3,8 +3,4 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   validates :name, presence: true
-
-  def admin?
-    admin
-  end
 end
